@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordering System</title>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
+
+    <!-- jQuery Libraries-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
+        integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
+        integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
+        crossorigin="anonymous"></script>
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+
+    <!-- External CSS -->
+    <link="stylesheet" href="style.css">
+
+        <style>
+            .navbar {
+                background-color: rgb(16, 191, 179);
+
+            }
+
+            .navbar-brand {
+                color: rgb(255, 255, 255);
+            }
+
+            .background {
+                background-color: rgb(59, 67, 78);
+                background-size: cover;
+                height: 100%;
+            }
+
+            .btn {
+                width: 150px
+            }
+
+            .card {
+                border-radius: 5px;
+            }
+
+            .card-body {
+                background-color: rgba(206, 214, 228, 0.551);
+            }
+
+            .card-body2 {
+                background-color: rgba(224, 229, 235, 0.551);
+            }
+        </style>
+
+
+</head>
+
+<body class="background">
+
+    <!-- Start of Navigation bar -->
+    <section>
+        <div class="navbar fixed-top navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><i class="fas fa-book-reader me-2"></i> B O O K A H O L I C</a>
+            </div>
+        </div>
+    </section>
+    <!-- End of Navigation bar -->
+
+    <!-- Order Form -->
+
+    <div class="row">
+        <div class="col-md-4 col-sm-12 mt-5">
+            <!--create data-->
+            <section style="padding-top:60px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 mx-auto ">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h4 class="card-title text-center mb-4">Order Form</h4>
+                                    <form id="formdata">
+                                        <div class="row">
+                                            <div class="col-md-12 mb-2">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1"><i
+                                                                class="fas fa-user me-1 py-1"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" name="customerName"
+                                                        id="customerName" aria-describedby="helpId"
+                                                        placeholder="Customer Name" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-2">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1"><i
+                                                                class="fas fa-phone-square me-1 py-1"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" name="contactNumber"
+                                                        id="contactNumber" aria-describedby="helpId"
+                                                        placeholder="Contact Number" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 mb-2">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1"><i
+                                                                class="fas fa-envelope-square me-1 py-1"></i></span>
+                                                    </div>
+                                                    <input type="email" class="form-control" name="email" id="email"
+                                                        aria-describedby="helpId" placeholder="Email" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 mb-2">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1"><i
+                                                                class="fas fa-book me-1 py-1"></i></span>
+                                                    </div>
+                                                    <select class="form-control" name="item" id="item">
+                                                        <option value="Book1">Book 1</option>
+                                                        <option value="Book2">Book 2</option>
+                                                        <option value="Book3">Book 3 </option>
+                                                        <option value="Book4">Book 4</option>
+                                                        <option value="Book5">Book 5</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 mb-2">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1"><i
+                                                                class="fas fa-phone-square me-1 py-1"></i></span>
+                                                    </div>
+                                                    <input type="number" class="form-control" name="qty" id="qty"
+                                                        aria-describedby="helpId" placeholder="Qty." required>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 mb-2">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1"><i
+                                                                class="fas fa-dollar-sign me-1 py-1"></i></span>
+                                                    </div>
+                                                    <input type="number" class="form-control" name="amount" id="amount"
+                                                        aria-describedby="helpId" placeholder="Amount" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 mb-2">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1"><i
+                                                                class="fas fa-truck me-1 py-1"></i></span>
+                                                    </div>
+                                                    <select class="form-control" name="deliveryMethod"
+                                                        id="deliveryMethod">
+                                                        <option value="Delivery">Delivery</option>
+                                                        <option value="Pickup">Pick-up</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 mb-2">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1"><i
+                                                                class="fas fa-house-user me-1 py-1"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" name="deliveryAddress"
+                                                        id="deliveryAddress" aria-describedby="helpId"
+                                                        placeholder="Delivery Address" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 mb-2">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1"><i
+                                                                class="fas fa-calendar-week me-1 py-1"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" name="deliveryTime"
+                                                        id="deliveryTime" aria-describedby="helpId"
+                                                        placeholder="MM/DD/YYYY" required>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-12 text-end mt-2">
+                                                <button id="btnsubmit" type="submit" class="btn btn-sm"
+                                                    style="background-color: #4CAF50; color: white; border-radius: 5px; font-size: 16px;"
+                                                    onclick="return confirm('Do you want to confirm your order?')"><i
+                                                        class="fas fa-shopping-cart me-2"></i>Check out </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- End of Order Form -->
+
+        <div class="col-md-8 col-sm-12 mt-5">
+            <!--table-->
+            <section style="padding-top:60px; padding-bottom:50px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 mx-auto">
+                            <div class="card bg-light">
+                                <div class="card-body2 mt-4 text-center">
+                                    <h4 class="card-title mb-4">Order Information</h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-sm table-inverse table-hover">
+                                            <thead class="thead-inverse"
+                                                style="background-color: rgb(117, 117, 116); color: white; font-family: 'Calibri';">
+                                                <tr>
+                                                    <th>Customer Name</th>
+                                                    <th>Contact Number</th>
+                                                    <th>Email</th>
+                                                    <th>Item</th>
+                                                    <th>Qty</th>
+                                                    <th>Amount</th>
+                                                    <th>Delivery Method</th>
+                                                    <th>Delivery Address</th>
+                                                    <th>Delivery Time</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tabledata">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--end of table-->
+        </div>
+    </div>
+
+
+
+
+
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyC7Xg96QxTqgp6wJhcFnTW0HiWa3IO1v3c",
+            authDomain: "ordereditemsinfo.firebaseapp.com",
+            projectId: "ordereditemsinfo",
+            storageBucket: "ordereditemsinfo.appspot.com",
+            messagingSenderId: "713147943118",
+            appId: "1:713147943118:web:ad87f89c68835de804a89f",
+            measurementId: "G-VFL1SHPCZM"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        var db = firebase.firestore();
+        db.settings({ timestampsInSnapshots: true });
+    </script>
+    <script src="index.js"></script>
+</body>
+
+
+</html>
